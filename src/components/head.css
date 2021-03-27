@@ -1,0 +1,33 @@
+.head {
+  padding: 0 2vw;
+  height: 9vh;
+}
+#brand {
+  background-color: transparent;
+  font-size: larger;
+  color: rgb(0, 125, 255);
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+#avatar span {
+  margin: 1vw;
+  background: none;
+  color: black;
+}
+#bell {
+  margin: 0 2vw;
+}
+
+#test {
+  height: 9vh;
+  background-color: #15294b;
+  z-index: 10;
+  position: absolute;
+  width: 100vw;
+}
+
+#test span {
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 0 2vw;
+}

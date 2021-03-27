@@ -1,0 +1,31 @@
+#home {
+  display: inline-block;
+  border: 2px solid black;
+}
+.text {
+  font-size: 1.5rem;
+}
+.data {
+  display: inline-block;
+  text-align: center;
+  margin: 0 0.8vw;
+}
+.data span {
+  color: black;
+  font-size: 1.6rem;
+  display: block;
+}
+.module {
+  width: max-content;
+  display: inline-block;
+  margin: 1vw;
+  background-color: white;
+  box-shadow: 0 0 5px rgb(18, 148, 255);
+  padding: 2vw 0;
+  border-radius: 5px;
+}
+
+.course {
+  display: inline-flex;
+  margin: 0 3vw;
+}
