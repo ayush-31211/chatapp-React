@@ -6,7 +6,10 @@ import Module from './module';
 
 function Home() {
   return (
-    <div id="upcoming"><div class="row">
+    <div id="upcoming">
+      <span className='heading'>Upcoming Modules</span>
+
+      <div class="row">
         <Module src={ReactJs} style={{width:'4rem', float:'left', margin:'1rem'}} text="REACTJS"/>
         <Module src={ReactJs} style={{width:'4rem', float:'left', margin:'1rem'}} text="REACTJS"/>
         <Module src={ReactJs} style={{width:'4rem', float:'left', margin:'1rem'}} text="REACTJS"/>

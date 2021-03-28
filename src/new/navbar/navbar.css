@@ -1,0 +1,13 @@
+#Nav {
+  background-color: white;
+  border: 2px solid black;
+  height: 9vh;
+  padding: 0 3rem;
+}
+#Nav div {
+  display: inline-block;
+}
+
+#user_name {
+  margin: 0 2rem;
+}

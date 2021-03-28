@@ -1,0 +1,8 @@
+#module {
+  border: 2px solid black;
+  overflow-y: scroll;
+}
+.course_taught {
+  margin: 0 2rem;
+  font-size: 0.8rem;
+}

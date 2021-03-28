@@ -1,0 +1,48 @@
+#sidebar {
+  /* width: 11vw; */
+  height: 82vh;
+  background-color: #15294b;
+  float: left;
+}
+.image {
+  text-align: center;
+  cursor: pointer;
+  padding: 2rem 2rem 1rem;
+  width: 11vw;
+}
+@media only screen and (min-width: 1080px) {
+  .image {
+    width: 11vw;
+    padding: 2rem 2rem 0;
+  }
+  #sidebar {
+    width: 11vw;
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .image {
+    font-size: 0;
+    padding: 2rem 2rem 1rem;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .image {
+    font-size: 0;
+    padding: 3vw 3vw 2vw;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .image {
+    width: 88px;
+    font-size: 0;
+    padding: 24px 24px 16px;
+  }
+  #sidebar {
+    width: 88px;
+    height: 82vh;
+    background-color: #15294b;
+    float: left;
+  }
+}

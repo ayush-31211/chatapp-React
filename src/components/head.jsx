@@ -33,7 +33,7 @@ setFlag(!flag)};
                 <Nav href="#features"><span style={{color:"white", fontSize:`${1.5}rem`, fontWeight:`bold`, margin:` ${0} ${2}vw`}}>Full Stack Developer Program</span></Nav>
                 <Navbar.Collapse className="justify-content-end">
                     <div style={{height:'9vh'}}>
-                        <div style={{textAlign:'end',display:(!flag)?"block":"none"}}>
+                        <div style={{textAlign:'end',display:(!flag)?"block":"none",height:'9vh'}}>
                             <span style={{color:'white',fontSize:`${1.5}rem`}}>{val}%</span>
                             <ProgressBar variant="info" now={val} style={{width:`${20}vw`, position:'relative',top:`${2.5}vh`}} />
                         </div>

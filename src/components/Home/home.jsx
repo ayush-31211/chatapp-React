@@ -7,7 +7,7 @@ import UpcomingModules from './upcomingModules.jsx';
 
 function Home() {
   return (
-    <div id="home">
+    <div id="home" className="containers">
         <ContinueLearning/>
         <UpcomingModules/>
     </div>

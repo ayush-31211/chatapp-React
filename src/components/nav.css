@@ -1,5 +1,6 @@
 #navbar {
   height: 82vh;
+  width: 8rem;
   overflow: hidden;
   flex-direction: column;
   background-color: rgb(21, 41, 76);
