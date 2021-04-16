@@ -1,33 +1,5 @@
-::-webkit-scrollbar {
-  display: none;
-}
-#ProgressBar,
-#ProgressBarStatus {
-  height: 10px;
-}
-#containers {
-  float: right;
-  width: 85rem;
-  height: 82vh;
-  background: #e5e5e5;
-  overflow: scroll;
-}
-.border {
-  border: 2px solid black;
-}
-#containers {
-  border: 2px solid black;
-  width: 89vw;
-}
-
-@media only screen and (max-width: 1080px) {
-  #containers {
-    max-width: 89vw;
-  }
-}
-@media only screen and (max-width: 800px) {
-  #containers {
-    width: 80vw;
-    overflow: scroll;
-  }
+#root {
+  background-color: black;
+  height: 100vh;
+  overflow: hidden;
 }

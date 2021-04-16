@@ -21,33 +21,54 @@ app.use(router);
 // io.on runs when we have a client connection on the server(to be spefic io instance)
 io.on('connection',(socket)=>{
 
-    socket.on('join',({name,room},callback)=>{
-        const {error,user} = addUser({id: socket.id,name,room});
-        if(error)
-            callback();
 
-        socket.emit('message',{user:'admin', text:`${user.name}, welcome to the room ${user.room}`});
-        socket.broadcast.to(user.room).emit('message',{user:'admin',text:`${user.name}, has joined the room`});
-        const users = getUserInRoom(room);
-        
-        setTimeout(()=>{
-            io.to(user.room).emit('roomData', { room: user.room, users });
-        },100)
-        socket.join(user.room);
-    })
-    socket.on('sendMessage',(message,callback)=>{
-        const user = getUser(socket.id);
-        io.to(user.room).emit('message',{ user: user.name, text: message});
-        callback(); 
-        
-    })
+    try{
+        socket.on('join',({name,room},callback)=>{
+            const {error,user} = addUser({id: socket.id,name,room});
+            if(error)
+                callback();
+
+            socket.emit('message',{user:'admin', text:`${user.name}, welcome to the room ${user.room}`});
+            socket.broadcast.to(user.room).emit('message',{user:'admin',text:`${user.name}, has joined the room`});
+            const users = getUserInRoom(room);
+            
+            setTimeout(()=>{
+                io.to(user.room).emit('roomData', { room: user.room, users });
+            },100)
+            socket.join(user.room);
+        })
+    }
+    catch(err)
+    {
+        alert("Error: ",err.message);
+    }
     
+    try{
+        socket.on('sendMessage',(message,callback)=>{
+            const user = getUser(socket.id);
+            io.to(user.room).emit('message',{ user: user.name, text: message});
+            callback(); 
+            
+        })
+    }    
+    catch(err)
+    {
+        alert("Transfer Error: ",err.message);
+    }
+
+    try{
     //ends the socket connection
-    socket.on('disconnect',()=>{
-        const user = getUser(socket.id);
-        removeUser(socket.id);
-        io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) });
-    });
+        socket.on('disconnect',()=>{
+            const user = getUser(socket.id);
+            removeUser(socket.id);
+            io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) });
+        });
+    }    
+    catch(err)
+    {
+        alert("Disconnect Error: ",err.message);
+    }
+
 });
 
 

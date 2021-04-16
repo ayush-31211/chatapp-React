@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -8,15 +8,15 @@ function Join() {
   const [room,setRoom]=useState('');
 
   return (
-    <>
-      <h1>Join</h1>
-      <input type='text' placeholder='UserName' onChange={(event)=>setName(event.target.value)} />
-      <input type='text' placeholder='Room' onChange={(event)=>setRoom(event.target.value)} />
+    <div className="box"> 
+      <h1 className="heading">Join</h1>
+      <input type='text' className="input" placeholder='UserName' onChange={(event)=>setName(event.target.value)} />
+      <input type='text' className="input" placeholder='Room' onChange={(event)=>setRoom(event.target.value)} />
       <Link onClick={(event)=>(!name||!room)?event.preventDefault() : null} to = {`/chat?name=${name}&room=${room}`}>
-          <button type='submit'>Sign In</button>
+          <button className="button" type='submit'>Sign In</button>
       </Link>
 
-    </>
+    </div>
   );
 }
 
