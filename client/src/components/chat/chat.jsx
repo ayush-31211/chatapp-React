@@ -46,7 +46,7 @@ function Chat({location}) {
       setMessages(messages => [ ...messages, message ]);
     });
 
-}, []);
+}, [name]);
 
   useEffect(()=>{
     socket.on("roomData", ({ users }) => {
