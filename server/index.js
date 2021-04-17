@@ -60,12 +60,17 @@ io.on('connection',(socket)=>{
     //ends the socket connection
         socket.on('disconnect',()=>{
             const user = getUser(socket.id);
-            removeUser(socket.id);
-            io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) });
+            if(user)
+            {
+                io.to(user.room).emit('message',{user:'admin', text:`${user.name}, left the room ${user.room}`});
+                removeUser(socket.id);
+                io.to(user.room).emit('roomData', { room: user.room, users: getUserInRoom(user.room) });
+            }
         });
     }    
     catch(err)
     {
+        console.log('DIS')
         alert("Disconnect Error: ",err.message);
     }
 

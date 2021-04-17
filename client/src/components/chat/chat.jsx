@@ -2,12 +2,17 @@ import React,{useState, useEffect} from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 import {Redirect} from 'react-router-dom';
+import './chat.css';
+import Infobar from './infobar.jsx';
+import Input from './input.jsx';
+import Messages from './messages.jsx';
+import Users from './users';
 
 let socket;
 
 function Chat({location}) {
 
-  const [name,setName]=useState('');
+  const [name,setName]=useState(queryString.parse(location.search).name);
   const [room,setRoom]=useState('');
   const [message,setMessage]=useState('');
   const [messages,setMessages]=useState([]);
@@ -19,20 +24,16 @@ function Chat({location}) {
   useEffect(()=>{
     const {name,room} = queryString.parse(location.search);
     
-    
     socket = io(ENDPOINT, { transports : ['websocket'] });
     
     console.log("Page Started");
-    setName(name);
+    setName(name)
     setRoom(room)
 
     socket.emit('join',{name, room},()=>{
-      console.log("JOIN Callback");
       return <Redirect to='/'/>
     });
     return function cleanup() {
-      alert("CLEANUP");
-      console.log("CLEANUP")      
     };
 
   },[ENDPOINT, location.search])
@@ -40,7 +41,8 @@ function Chat({location}) {
 
 
   useEffect(() => {
-    socket.on('message', message => {
+    socket.on('message', (message) => {
+      message = {...message,flag:(message.user===name)};
       setMessages(messages => [ ...messages, message ]);
     });
 
@@ -48,7 +50,6 @@ function Chat({location}) {
 
   useEffect(()=>{
     socket.on("roomData", ({ users }) => {
-      console.log("room data",users)
       setUsers(users);
     });
     
@@ -57,37 +58,32 @@ function Chat({location}) {
 
 
   const sendMessage = (event)=>{
-    console.log(event,message);
     event.preventDefault();
     if(message)
     {
-      console.log("MESSAGE SENT",socket)
       socket.emit('sendMessage',message,function(){setMessage('')});
     }
 
   }
 
-  console.log("Message",message,messages);
+  function disconnect()
+  {
+    socket.disconnect();
+  }
 
   return (
     <>
-      <div>
-        <div>
-          
+      <div className="cbox">
+            <div id="chatbox">
+                <Infobar room={room} disconnect={disconnect}/>
+                <Messages message_list={messages}/>
+                <Input setMessage={setMessage} sendMessage={sendMessage}/>
+            </div>
+            <div id="infosection">
+                <h2>    Active Users in the Room:</h2>
+                <Users users={users}/>
+            </div>
         </div>
-        <div>
-
-          <div>
-            <h1>In Room</h1>
-          {users.map((val,idx)=>{return <div key={idx}>{val.name} {idx}</div>})}
-          </div>
-          
-          <div>
-          {messages.map((val,idx)=>{return <div key={idx}>{val.text} {idx}</div>})}
-          </div>
-          <input type="text" val={message} onChange={(event)=>setMessage(event.target.value)} onKeyPress={(event)=>event.key==='Enter'?sendMessage(event):null}/>
-        </div>
-      </div>
     </>
   );
 }
